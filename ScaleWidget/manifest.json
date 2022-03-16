@@ -1,0 +1,24 @@
+{
+  "name": "ScaleWidget",
+  "2D": true,
+  "3D": false,
+  "platform": "HTML",
+  "version": "2.23",
+  "wabVersion": "2.23",
+  "author": "Yo mismo",
+  "description": "This is the custom widget to show which scale is has been used by the map",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+		"inPanel":false,
+		"hasLocale": false,
+		"hasStyle":true,
+		"hasConfig":false,
+		"hasUIFile":true,
+		"hasSettingPage":true,
+		"hasSettingUIFile":true,
+		"hasSettingLocale":true,
+		"hasSettingStyle":true,
+		"IsController":false
+  }
+}
