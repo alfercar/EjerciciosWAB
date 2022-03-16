@@ -82,9 +82,7 @@ define([
 
           //Ahora para que nos lo centre (en caso de que no tengamos puesto un web map)
 
-          var extension = wmsLayer.fullExtent
-
-          this.map.setExtent(extension)
+          this.map.setExtent(wmsLayer.fullExtent)
 
         }
       },
