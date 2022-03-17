@@ -1,0 +1,29 @@
+
+
+.jimu-widget-InfoLayersWebMap table {
+    font-family: arial, sans-serif;
+    border: black;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .jimu-widget-InfoLayersWebMap td {
+
+    padding: 5px;
+  }
+
+  .jimu-widget-InfoLayersWebMap tr:nth-child(even) {
+    background-color: #8f8b8b;
+  }
+
+  .jimu-widget-InfoLayersWebMap tbody:nth-child(even) {
+    background-color: #8f8b8b;
+  }
+  
+  
+/* even par odd impar */
+
+  .jimu-widget-InfoLayersWebMap p{
+      margin: 0px;
+
+  }
