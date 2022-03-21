@@ -16,11 +16,17 @@
 
 define([
 
+  "esri/map",
+  "esri/layers/FeatureLayer",
+
   'dojo/_base/declare',
   'jimu/BaseWidget'],
 
 
   function (
+
+    map,
+    FeatureLayer,
 
 
     declare,
@@ -49,19 +55,113 @@ define([
 
       onOpen: function () {
         console.log('This.map', this.map);
+        layer = this.map.getLayer("Felicidad_2016_1798");
+        console.log("layer", layer)
       },
 
       onClose: function () {
         console.log('onClose');
       },
 
-      onMinimize: function () {
-        console.log('onMinimize');
+
+
+      clickBotonPais: function () {
+        console.log("hecho1");
+
+        var array = layer._graphicsVal
+
+        ///Aqui nos complicamos la vida, pero salimos mas fuertes
+
+        // for (let i = 0; i<this.array.length; i++){
+        //   if (array[i].attributes.Country == inputPais.value){
+        //     console.log("Guay")
+        //   }
+        // };
+
+        // for(var todos of array){
+
+        //   if (todos.attributes.Country == this.inputPais.value){
+        //         console.log("Guay")
+        //     }
+
+        // }
+
+        ///AQUI NO NOS COMLICAMOS
+
+        layer1 = this.map.getLayer("Felicidad_2016_1798");
+        console.log("layer1", layer1)
+
+        // layer1.setDefinitionExpression(`Country = '${this.inputPais.value}'`);
+
+        if (this.inputPais.value == "") {
+          layer1.setDefinitionExpression(`1=1`)
+
+        }
+
+        if (this.inputPais.value != "") {
+          layer1.setDefinitionExpression(`Country = '${this.inputPais.value}'`)
+
+        }
+
+
+
+
       },
 
-      onMaximize: function () {
-        console.log('onMaximize');
+      clickBotonRank: function () {
+        console.log("hecho2");
+
+        var array2 = layer._graphicsVal
+
+
+
+        layer2 = this.map.getLayer("Felicidad_2016_1798");
+        console.log("layer2", layer2)
+
+
+        if (this.inputRank.value == "") {
+          layer2.setDefinitionExpression(`1=1`)
+
+        }
+
+        if (this.inputRank.value != "") {
+          layer2.setDefinitionExpression(`Happiness_Rank = '${this.inputRank.value}'`)
+
+        }
       },
+
+      clickBotonRestaurar: function () {
+
+        console.log("hecho2");
+
+
+
+        layer2 = this.map.getLayer("Felicidad_2016_1798");
+
+
+        //Modo 1
+
+        // layer2.setDefinitionExpression(`1=1`)
+        // this.inputRank.value = ""
+        // this.inputPais.value = ""
+
+        // Modo 2
+
+        layer2.setDefinitionExpression(layer2.defaultDefinitionExpression);
+
+      }
+
+
+
+
+
+      // onMinimize: function () {
+      //   console.log('onMinimize');
+      // },
+
+      // onMaximize: function () {
+      //   console.log('onMaximize');
+      // },
 
       // onSignIn: function(credential){
       //   /* jshint unused:false*/

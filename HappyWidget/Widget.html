@@ -1,11 +1,32 @@
 <div>
-    <div>
+
+    <div id="cuadroimagen">
+        <div id="imagen">
+            <img src="widgets/HappyWidget/images/filtro.png" alt="filtroImagen">
+        </div>
+    </div>
+
+    <div id="cuadrotexto">
         <h2>Filtro por país</h2>
         <hr>
-        <button id="boton1" class="button">Filtrar</button> <input type="text" id="filtroPais">
+        <button id="boton1" class="button" data-dojo-attach-point="botonPais"
+            data-dojo-attach-event="onclick: clickBotonPais">Filtrar</button> <input type="text"
+            data-dojo-attach-point="inputPais">
 
         <h2>Filtro por Ranking de Felicidad</h2>
         <hr>
-        <button id="boton2" class="button">Filtrar</button> <input type="text" id="filtroRanking">
+        <button id="boton2" class="button" data-dojo-attach-point="botonRank"
+            data-dojo-attach-event="onclick: clickBotonRank">Filtrar</button> <input type="number"
+            data-dojo-attach-point="inputRank">
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div id="cuadroRestaurar">
+        <button class="btn btn-primary" class="botonRest" id="boton3" data-dojo-attach-point="botonRestaurar"
+            data-dojo-attach-event="onclick: clickBotonRestaurar"> Restaurar filtros</button>
     </div>
 </div>
