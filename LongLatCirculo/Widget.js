@@ -13,6 +13,9 @@ define([
   "esri/Color",
   "esri/graphic",
 
+  "esri/SpatialReference",
+  "esri/units",
+
   'dojo/_base/declare', 'jimu/BaseWidget'
 ],
   function (
@@ -27,6 +30,9 @@ define([
     SimpleMarkerSymbol,
     Color,
     Graphic,
+
+    SpatialReference,
+    Units,
 
 
 
@@ -48,14 +54,14 @@ define([
 
       postCreate: function () {
 
-        this.symbol = new SimpleFillSymbol();
-        var poligono = this.symbol;
+        // this.symbol = new SimpleFillSymbol();
+        // var poligono = this.symbol;
 
-        var line = new SimpleLineSymbol();
-        line.setColor(new Color([26, 26, 26, 1]));
+        // var line = new SimpleLineSymbol();
+        // line.setColor(new Color([26, 26, 26, 1]));
 
-        poligono.setOutline(line);
-        poligono.setColor(new Color([0, 197, 255, 0.25]));
+        // poligono.setOutline(line);
+        // poligono.setColor(new Color([0, 197, 255, 0.25]));
 
 
       },
@@ -72,6 +78,27 @@ define([
 
       Localizar: function () {
 
+        //Van como encadenados, entonces van sin los; entre medias. PERO SOLO ENTRE LOS IF
+
+        if (this.Longitud.value == "") {
+          alert("Introduzca la longitud")
+          return
+        }
+
+        else if (this.Latitud.value == "") {
+          alert("Introduzca la latitud")
+          return
+        }
+
+        else if (this.Radio.value == "") {
+          alert("Introduzca el radio")
+          return
+        };
+
+
+
+        
+
         var latitud = this.Latitud.value;
         var longitud = this.Longitud.value;
         console.log([longitud, latitud])
@@ -85,19 +112,37 @@ define([
 
         //Ahora dibujamos el círculo
 
-         var radio = this.Radio.value
+        var radio = this.Radio.value
+        console.log("radio", radio)
+
+        var point = new Point([longitud, latitud], new SpatialReference({ wkid: 4326 }));
 
         this.map.graphics.clear();
 
-        var circulito = new Circle({
-          center: [longitud, latitud],
-          radius: radio
+        var circulito = new Circle(point, {
+          // center: [longitud, latitud],
+          radius: radio,
+          geodesic: true,
+
           // radius: dom.byId("radi").value,
 
         });
 
+        console.log("circulo", circulito);
 
-        var graphic = new Graphic(circulito, this.symbol);
+
+
+        var line = new SimpleLineSymbol();
+        line.setColor(new Color([26, 26, 26, 1]));
+        var fill = new SimpleFillSymbol();
+        fill.setColor(new Color([0, 197, 255, 0.25]));
+        fill.setOutline(line);
+
+
+
+        var graphic = new Graphic(circulito, fill);
+
+        console.log("grafica", graphic)
 
         this.map.graphics.add(graphic);
 
@@ -106,20 +151,10 @@ define([
 
 
 
-        if (this.Longitud.value == ""){
-          alert ("Introduzca la longitud")
-        };
-
-        if (this.Latitud.value == ""){
-          alert ("Introduzca la latitud")
-        };
-
-        if (this.Radio.value == ""){
-          alert ("Introduzca el radio")
-        };
+       
 
 
-        
+
 
       },
 

@@ -2,20 +2,27 @@
 
     <h2>Añade un punto al mapa dando unas coordenadas</h2>
     <hr>
-    <p > Longitud</p><input type="number" id="longi" data-dojo-attach-point="Longitud">
+    <p ><b>Longitud</b> </p><input type="number" id="longi" data-dojo-attach-point="Longitud" placeholder="Introduce una longitud"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 
-    <p > Latitud</p><input type="number" id="lati" data-dojo-attach-point="Latitud">
+    <br>
+
+    <p ><b>Latitud</b> </p><input type="number" id="lati" data-dojo-attach-point="Latitud" placeholder="Introduce una Latitud" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 
     <h2>Establece el radio del punto elegido</h2>
     <hr>
 
-    <p> Radio (metros)</p><input type="number" id="radi" data-dojo-attach-point="Radio">
+    <p><b>Radio (metros)</b> </p><input type="number" id="radi" data-dojo-attach-point="Radio" placeholder="Introduce un radio" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
 
     <hr>
     <br>
+
+    <div id="botonito">
+        <button data-dojo-attach-event="onclick:Localizar" class="btn btn-dark btn-lg">Localizar</button>
+
+    </div>
     
 
-    <button data-dojo-attach-event="onclick:Localizar" class="btn btn-dark">Localizar</button>
+    
 
    
 </div>
