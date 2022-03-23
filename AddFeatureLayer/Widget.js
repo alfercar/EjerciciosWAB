@@ -54,19 +54,19 @@ define(['dojo/dom','dojo/_base/declare', 'jimu/BaseWidget', 'esri/layers/Feature
 
       },
 
-      selectCapa: function(){
+      // selectCapa: function(){
 
-        var USAlayer = new ArcGISDynamicMapServiceLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer", {"opacity": 0.4});
+      //   var USAlayer = new ArcGISDynamicMapServiceLayer("http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer", {"opacity": 0.4});
 
       
-        USAlayer.setVisibleLayers([0,2,3]);
+      //   USAlayer.setVisibleLayers([0,2,3]);
 
-        var terremotos = new FeatureLayer("http://services.arcgis.com/ue9rwulIoeLEI9bj/arcgis/rest/services/Earthquakes/FeatureServer/0");
+      //   var terremotos = new FeatureLayer("http://services.arcgis.com/ue9rwulIoeLEI9bj/arcgis/rest/services/Earthquakes/FeatureServer/0");
         
-        this.map.addLayer([terremotos,USAlayer])
+      //   this.map.addLayer([terremotos,USAlayer])
     
 
-      },
+      // },
 
   
 
