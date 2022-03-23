@@ -35,7 +35,15 @@ define(['dojo/dom','dojo/_base/declare', 'jimu/BaseWidget'],
         // alert("waazaaaaaa");
         let currentExtent = this.map.extent;
         dom.byId("xMin").innerHTML = "xMin: " + currentExtent.xmin;
+
         //Habria que hacerlo 4 veces
+
+        dom.byId("yMin").innerHTML = "yMin: " + currentExtent.ymin;
+
+        dom.byId("yMax").innerHTML = "yMax: " + currentExtent.ymax;
+
+        dom.byId("xMax").innerHTML = "xMax: " + currentExtent.xmax;
+        
         
       },
 
