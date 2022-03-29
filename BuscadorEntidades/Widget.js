@@ -119,7 +119,7 @@ define([
         else if (this.selectPlan.value == "1") {
 
           tiendas.setDefinitionExpression(`1=1`);
-          
+
           // tiendas.setDefinitionExpression(`codplan = '${this.selectPlan.value}'`);
 
           bares.setDefinitionExpression('1=0');
@@ -137,7 +137,7 @@ define([
         else if (this.selectPlan.value == "20") {
 
           teatros.setDefinitionExpression(`1=1`);
-          
+
           bares.setDefinitionExpression('1=0');
           ocioNocturno.setDefinitionExpression('1=0');
           cines.setDefinitionExpression('1=0');
@@ -151,7 +151,7 @@ define([
         else if (this.selectPlan.value == "30") {
 
           parques.setDefinitionExpression(`1=1`);
-          
+
           bares.setDefinitionExpression('1=0');
           ocioNocturno.setDefinitionExpression('1=0');
           cines.setDefinitionExpression('1=0');
@@ -165,7 +165,7 @@ define([
         else if (this.selectPlan.value == "40") {
 
           ocioNocturno.setDefinitionExpression(`1=1`);
-          
+
           bares.setDefinitionExpression('1=0');
           teatros.setDefinitionExpression('1=0');
           cines.setDefinitionExpression('1=0');
@@ -179,7 +179,7 @@ define([
         else if (this.selectPlan.value == "50") {
 
           museos.setDefinitionExpression(`1=1`);
-          
+
           bares.setDefinitionExpression('1=0');
           ocioNocturno.setDefinitionExpression('1=0');
           cines.setDefinitionExpression('1=0');
@@ -193,7 +193,7 @@ define([
         else if (this.selectPlan.value == "60") {
 
           deporte.setDefinitionExpression(`1=1`);
-          
+
           bares.setDefinitionExpression('1=0');
           ocioNocturno.setDefinitionExpression('1=0');
           cines.setDefinitionExpression('1=0');
@@ -207,7 +207,7 @@ define([
         else if (this.selectPlan.value == "70") {
 
           cines.setDefinitionExpression(`1=1`);
-          
+
           bares.setDefinitionExpression('1=0');
           ocioNocturno.setDefinitionExpression('1=0');
           teatros.setDefinitionExpression('1=0');
@@ -221,7 +221,7 @@ define([
         else if (this.selectPlan.value == "90") {
 
           bares.setDefinitionExpression(`1=1`);
-          
+
           teatros.setDefinitionExpression('1=0');
           ocioNocturno.setDefinitionExpression('1=0');
           cines.setDefinitionExpression('1=0');
@@ -232,52 +232,82 @@ define([
 
         }
 
-       
 
 
 
-        // console.log("Servicio de los concellos", this.config.concellosService)
 
-        // const queryTask = new QueryTask(this.config.concellosService);
-
-        // const query = new Query();
-        // query.returnGeometry = false;
-
-        // query.outFields = ["CODCONC", "CONCELLO", "CODPROV"];
-        // query.where = `CODPROV=${this.selectProvincia.value}`;
-
-        // console.log("querycon", query);
-
-        // queryTask.execute(query, lang.hitch(this, function (results) {
-
-        //   console.log("results", results)
-
-        //   opt = document.createElement("option");
-        //   opt.value = "-1";
-        //   opt.innerHTML = "Selecciona un concello";
-        //   this.listaConcellos.add(opt);
-
-        //   for (var i = 0; i < results.features.length; i++) {
-        //     opt = document.createElement("option");
-        //     opt.value = results.features[i].attributes.CODCONC;
-        //     opt.innerHTML = results.features[i].attributes.CONCELLO;
-        //     this.listaConcellos.add(opt);
-        //   }
-
-        // }))
 
 
       },
 
       cargaPuntosPlanes: function () {
-        console.log("hola")
+
+        console.log("Planes", this.selectPlan.value);
+        let codigoPlan = this.selectPlan.value;
+        if (codigoPlan == -1) { return };
+        this.listaPlanes.innerHTML = "";
+
+        distritos = this.map.getLayer("Datos_PlanApp_9427");
+
+        bares = this.map.getLayer("Datos_PlanApp_4644");
+
+        cines = this.map.getLayer("Datos_PlanApp_9581");
+
+        deporte = this.map.getLayer("Datos_PlanApp_4115");
+
+        museos = this.map.getLayer("Datos_PlanApp_4750");
+
+        ocioNocturno = this.map.getLayer("Datos_PlanApp_4235");
+
+        parques = this.map.getLayer("Datos_PlanApp_3480");
+
+        teatros = this.map.getLayer("Datos_PlanApp_6757");
+
+        tiendas = this.map.getLayer("Datos_PlanApp_7723");
+
+
+        // console.log("Servicio de los concellos", this.config.concellosService)
+
+        if (this.selectPlan.value == "1") {
+
+          const queryTask = new QueryTask(tiendas);
+
+          const query = new Query();
+          query.returnGeometry = false;
+
+          query.outFields = ["codplan", "subtipo", "codsubcategoria"];
+
+          query.where = `codplan=${this.selectPlan.value}`;
+
+          console.log("querycon", query);
+
+          queryTask.execute(query, lang.hitch(this, function (results) {
+
+            console.log("results", results)
+
+            opt = document.createElement("option");
+            opt.value = "-1";
+            opt.innerHTML = "Selecciona una subcategoría";
+            this.listaConcellos.add(opt);
+
+            // for (var i = 0; i < results.features.length; i++) {
+            //   opt = document.createElement("option");
+            //   opt.value = results.features[i].attributes.CODCONC;
+            //   opt.innerHTML = results.features[i].attributes.CONCELLO;
+            //   this.listaConcellos.add(opt);
+            // }
+
+          }))
+        }
+
+
       },
 
       zoomPlanes: function () {
         console.log("hola")
       },
 
-     
+
 
 
 
