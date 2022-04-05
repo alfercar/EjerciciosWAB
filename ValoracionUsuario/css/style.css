@@ -1,0 +1,28 @@
+.jimu-widget-ValoracionUsuario #botonito{
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+
+.jimu-widget-ValoracionUsuario #fotoplanapp{
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+}
+
+.jimu-widget-ValoracionUsuario p{
+   
+    font-style: normal;
+    font: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.jimu-widget-ValoracionUsuario h1{
+    font-size: large;
+    font-style: normal;
+    font: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
