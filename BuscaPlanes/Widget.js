@@ -12,6 +12,8 @@ define([
   "esri/symbols/SimpleLineSymbol",
   "esri/Color",
 
+  "esri/layers/FeatureLayer",
+
 
   'dojo/_base/declare',
   'jimu/BaseWidget'],
@@ -28,20 +30,17 @@ define([
     SimpleLineSymbol,
     Color,
 
+    FeatureLayer,
+
 
     declare,
     BaseWidget) {
-    //To create a widget, you need to derive from BaseWidget.
+
     return declare([BaseWidget], {
-      // Custom widget code goes here
+
 
       baseClass: 'jimu-widget-BuscaPlanes',
 
-      //this property is set by the framework when widget is loaded.
-      //name: 'CustomWidget',
-
-
-      //methods to communication with app container:
 
       postCreate: function () {
 
@@ -69,12 +68,40 @@ define([
         if (codigoPlan == -1) { return };
         this.listaPlanes.innerHTML = "";
 
-        // console.log("array de layers",this.map.itemInfo.itamData.operationalLayers)
 
-        // console.log("Servicio de las entidades", this.config.concellosService)
+        var urlServer = "https://services5.arcgis.com/zZdalPw2d0tQx8G1/arcgis/rest/services/Datos_PlanApp1/FeatureServer/";
 
-        const queryTask = new QueryTask("https://services5.arcgis.com/zZdalPw2d0tQx8G1/ArcGIS/rest/services/Datos_PlanApp1/FeatureServer/8");
+        var layerNumber;
 
+        // bucle para decidir el feature layes del feature server
+
+
+        if (this.selectPlan.value === '1') { //tiendas
+          layerNumber = 8;
+        } else if (this.selectPlan.value === '20') {
+          layerNumber = 7;
+        } else if (this.selectPlan.value === '30') {
+          layerNumber = 6;
+        } else if (this.selectPlan.value === '40') {
+          layerNumber = 5;
+        } else if (this.selectPlan.value === '50') {
+          layerNumber = 4;
+        } else if (this.selectPlan.value === '60') {
+          layerNumber = 2;
+        } else if (this.selectPlan.value === '70') {
+          layerNumber = 1;
+        } else if (this.selectPlan.value === '90') {
+          layerNumber = 0;
+        }
+
+
+        var urlQuery = urlServer + layerNumber;
+
+        // `urlServer${layerNumber}`;
+
+        var querytask = new QueryTask(urlQuery);
+
+        // Ejecutamos query
         const query = new Query();
         query.returnGeometry = false;
 
@@ -83,7 +110,11 @@ define([
 
         console.log("query", query);
 
-        queryTask.execute(query, lang.hitch(this, function (results) {
+
+        // Recogemos los valores de results query
+
+
+        querytask.execute(query, lang.hitch(this, function (results) {
 
           console.log("results", results)
 
@@ -91,6 +122,8 @@ define([
           opt.value = "-1";
           opt.innerHTML = "Selecciona un establecimiento";
           this.listaPlanes.add(opt);
+
+          // Creamos las opciones del select
 
           for (var i = 0; i < results.features.length; i++) {
             opt = document.createElement("option");
@@ -102,37 +135,68 @@ define([
         }))
 
 
+
+
       },
 
 
 
       zoomEstablecimiento: function () {
+        console.log("HOLA")
 
         console.log("Código de Planes", this.selectPlan.value);
         let codigoPlan = this.selectPlan.value;
         if (codigoPlan == -1) { return };
 
 
-        // console.log("Servicio de los concellos", this.config.concellosService)
+        var urlServer = "https://services5.arcgis.com/zZdalPw2d0tQx8G1/arcgis/rest/services/Datos_PlanApp1/FeatureServer/";
 
-        const queryTask = new QueryTask("https://services5.arcgis.com/zZdalPw2d0tQx8G1/ArcGIS/rest/services/Datos_PlanApp1/FeatureServer/8");
+        var layerNumber;
 
-        const query = new Query();
-        query.returnGeometry = true;
-        query.outSpatialReference = new SpatialReference(102100);
-        query.outFields = ["nombre", "objectid", "codplan"];
-        // query.where = `codplan=${this.listaPlanes.value}`
-        query.where = `objectid=${this.listaPlanes.value}`;
-     
+        // bucle para decidir el feature layes del feature server
 
-        console.log("query2", query);
 
-        queryTask.execute(query, lang.hitch(this, function (results2) {
+        if (this.selectPlan.value === '1') { //tiendas
+          layerNumber = 8;
+        } else if (this.selectPlan.value === '20') {
+          layerNumber = 7;
+        } else if (this.selectPlan.value === '30') {
+          layerNumber = 6;
+        } else if (this.selectPlan.value === '40') {
+          layerNumber = 5;
+        } else if (this.selectPlan.value === '50') {
+          layerNumber = 4;
+        } else if (this.selectPlan.value === '60') {
+          layerNumber = 2;
+        } else if (this.selectPlan.value === '70') {
+          layerNumber = 1;
+        } else if (this.selectPlan.value === '90') {
+          layerNumber = 0;
+        }
+
+
+        var urlQuery = urlServer + layerNumber;
+
+        // `urlServer${layerNumber}`;
+
+        var querytask = new QueryTask(urlQuery);
+
+        const query2 = new Query();
+        query2.returnGeometry = true;
+        query2.outSpatialReference = new SpatialReference(102100);
+        query2.outFields = ["nombre", "objectid", "codplan"];
+
+        query2.where = `objectid=${this.listaPlanes.value}`;
+
+
+        console.log("query2", query2);
+
+        querytask.execute(query2, lang.hitch(this, function (results2) {
 
           console.log("results2", results2);
 
           if (results2.features.length > 0) {
-            
+
             var geometria = results2.features[0].geometry;
             this.map.graphics.clear();
 
@@ -150,7 +214,7 @@ define([
 
             // this.map.setExtent(geometria.getExtent(), true);
 
-            this.map.centerAndZoom(geometria,18)
+            this.map.centerAndZoom(geometria, 18)
 
           }
 
@@ -158,45 +222,17 @@ define([
 
         }))
 
+
+
+
       },
 
-      // cargapruebaFS: function(){
-      //   console.log("https://services5.arcgis.com/zZdalPw2d0tQx8G1/arcgis/rest/services/Datos_PlanApp/FeatureServer")
 
-      //   console.log("Servicio de las entidades", this.config.FeatureSetprueba)
-
-      // },
 
       onClose: function () {
         console.log('Que pena que se cierre :(');
       },
 
-      // onMinimize: function(){
-      //   console.log('onMinimize');
-      // },
-
-      // onMaximize: function(){
-      //   console.log('onMaximize');
-      // },
-
-      // onSignIn: function(credential){
-      //   /* jshint unused:false*/
-      //   console.log('onSignIn');
-      // },
-
-      // onSignOut: function(){
-      //   console.log('onSignOut');
-      // }
-
-      // onPositionChange: function(){
-      //   console.log('onPositionChange');
-      // },
-
-      // resize: function(){
-      //   console.log('resize');
-      // }
-
-      //methods to communication between widgets:
 
     });
   });

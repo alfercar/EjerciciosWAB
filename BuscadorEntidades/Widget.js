@@ -1,47 +1,19 @@
 
 define([
 
-  "esri/tasks/QueryTask",
-  "esri/tasks/query",
-  "esri/SpatialReference",
-
-  'dojo/_base/lang',
-
-  "esri/graphic",
-  "esri/symbols/SimpleFillSymbol",
-  "esri/symbols/SimpleLineSymbol",
-  "esri/Color",
-
-
   'dojo/_base/declare',
   'jimu/BaseWidget'],
 
   function (
-    QueryTask,
-    Query,
-    SpatialReference,
-
-    lang,
-
-    Graphic,
-    SimpleFillSymbol,
-    SimpleLineSymbol,
-    Color,
-
 
     declare,
     BaseWidget) {
-    //To create a widget, you need to derive from BaseWidget.
+
     return declare([BaseWidget], {
-      // Custom widget code goes here
 
       baseClass: 'jimu-widget-BuscadorEntidades',
 
-      //this property is set by the framework when widget is loaded.
-      //name: 'CustomWidget',
-
-
-      //methods to communication with app container:
+    
 
       postCreate: function () {
 
@@ -58,8 +30,6 @@ define([
 
 
       },
-
-
 
 
       cargaPlanes: function () {
@@ -149,7 +119,7 @@ define([
           deporte.setDefinitionExpression('1=0');
 
 
-          
+
 
         }
 
@@ -182,7 +152,7 @@ define([
             parques.setDefinitionExpression(`"valoracion">=${this.selectValoracion.value}`)
 
           }
-          
+
 
           bares.setDefinitionExpression('1=0');
           ocioNocturno.setDefinitionExpression('1=0');
@@ -296,7 +266,7 @@ define([
 
       },
 
-      
+
       onClose: function () {
 
         distritos = this.map.getLayer("Datos_PlanApp1_3987");
@@ -306,24 +276,24 @@ define([
 
 
         cines = this.map.getLayer("Datos_PlanApp1_8065");
-    
+
 
         deporte = this.map.getLayer("Datos_PlanApp1_7620");
-       
+
 
         museos = this.map.getLayer("Datos_PlanApp1_2695");
- 
+
 
         ocioNocturno = this.map.getLayer("Datos_PlanApp1_3708");
-     
+
 
         parques = this.map.getLayer("Datos_PlanApp1_7095");
-     
+
         teatros = this.map.getLayer("Datos_PlanApp1_3137");
-     
+
 
         tiendas = this.map.getLayer("Datos_PlanApp1_7368");
-       
+
 
         var capas = [distritos, bares, cines, deporte, museos, ocioNocturno, parques, teatros, tiendas];
 
@@ -349,24 +319,7 @@ define([
       //   console.log('onMaximize');
       // },
 
-      // onSignIn: function(credential){
-      //   /* jshint unused:false*/
-      //   console.log('onSignIn');
-      // },
-
-      // onSignOut: function(){
-      //   console.log('onSignOut');
-      // }
-
-      // onPositionChange: function(){
-      //   console.log('onPositionChange');
-      // },
-
-      // resize: function(){
-      //   console.log('resize');
-      // }
-
-      //methods to communication between widgets:
+      
 
     });
   });
