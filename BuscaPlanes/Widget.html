@@ -1,0 +1,63 @@
+<div >
+
+    <div>
+        <h1><b>Seleccione un plan para comenzar</b></h1>
+        <hr>
+        <select data-dojo-attach-point="selectPlan" data-dojo-attach-event="onChange:cargaPlanes" 
+            style="display: block;"
+            class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+            <option value="-1">Seleccione un plan</option>
+            <option value="1" text="Tiendas">Tiendas</option>
+            <option value="20" text="Teatro">Teatro</option>
+
+
+            <option value="30" text="Parque">Parque</option>
+            <option value="40" text="OcioNocturno">Ocio Nocturno</option>
+            <option value="50" text="Museo">Museo</option>
+            <option value="60" text="Deporte">Deporte</option>
+            <option value="70" text="Cine">Cine</option>
+
+            <option value="90" text="Bares">Bares</option>
+
+        </select>
+ 
+
+    </div>
+
+    <div data-dojo-attach-point="planes"  class="divisores">
+
+        <label>Establecimiento: </label>
+
+        <select  data-dojo-attach-point="listaPlanes"
+        class="form-select form-select-sm" aria-label=".form-select-sm example"></select > 
+
+        
+        <button class="btn btn-outline-primary btn-sm" 
+        
+        data-dojo-attach-event="onClick:zoomEstablecimiento" 
+        
+        style="border-radius: 100%;"><img src="widgets/BuscaPlanes/images/lupa.png" alt="lupita" style="height: 15px;"></button>
+
+        
+
+    </div>
+
+<!-- 
+    <div>
+        <h1><b>Prueba feature set</b></h1>
+        <hr>
+        <select data-dojo-attach-point="pruebaFS" data-dojo-attach-event="onChange:cargapruebaFS" 
+            style="display: block;"
+            class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+        </select>
+ 
+
+    </div> -->
+ 
+
+
+
+
+</div>
